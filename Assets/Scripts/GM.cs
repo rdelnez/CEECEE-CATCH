@@ -46,14 +46,31 @@ public class GM : MonoBehaviour {
 	public void CheckDifficultyLock(){
 
 		if (!SVM_Script.advanceIsLocked) {
-			advanceDifficulty.GetComponent<Button>().interactable = true;
-			advanceDifficultyLock.SetActive(false);
+			advanceDifficulty.GetComponent<Button> ().interactable = true;
+			advanceDifficultyLock.SetActive (false);
+		} else {
+			advanceDifficulty.GetComponent<Button> ().interactable = false;
+			advanceDifficultyLock.SetActive (true);
 		}
 
-		if (!SVM_Script.expertIsLocked){
-			expertDifficulty.GetComponent<Button>().interactable = true;
-			expertDifficultyLock.SetActive(false);
+		if (!SVM_Script.expertIsLocked) {
+			expertDifficulty.GetComponent<Button> ().interactable = true;
+			expertDifficultyLock.SetActive (false);
+		} else {
+			expertDifficulty.GetComponent<Button> ().interactable = false;
+			expertDifficultyLock.SetActive (true);
+
 		}
+	}
+
+	public void RelockDifficulties(){
+		PlayerPrefs.SetInt ("EE_advance", 0);
+		SVM_Script.advanceIsLocked = true;
+		
+		PlayerPrefs.SetInt ("EE_expert", 0);
+		SVM_Script.expertIsLocked = true;
+		
+		CheckDifficultyLock ();
 	}
 	
 	//Toggle campaign sprite when clicked

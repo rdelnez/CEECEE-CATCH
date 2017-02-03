@@ -186,10 +186,12 @@ public class ScoreManagerScript : MonoBehaviour {
 
 				if(SVM_Script.advanceIsLocked){
 					SVM_Script.advanceIsLocked=false;
+					PlayerPrefs.SetInt("EE_advance",1);
 
 				}
 				else if(SVM_Script.expertIsLocked){
 					SVM_Script.expertIsLocked=false;
+					PlayerPrefs.SetInt("EE_expert",1);
 
 				}
 
