@@ -42,6 +42,11 @@ public class TimeManagerScript : MonoBehaviour {
 
 
 	// Use this for initialization
+
+	void Awake(){
+		InitializeTime();
+	}
+
 	void Start () {
 
 		listNumImages = new List<Sprite>();
@@ -81,6 +86,7 @@ public class TimeManagerScript : MonoBehaviour {
 
 	IEnumerator UpdateTime(){
 		while(true){
+
 			elapsedTime = (int)(Time.time - timeStarted);
 			timeInString = elapsedTime.ToString ();
 			tempChar = timeInString [0];

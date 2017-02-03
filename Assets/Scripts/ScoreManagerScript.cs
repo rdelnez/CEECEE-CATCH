@@ -61,6 +61,8 @@ public class ScoreManagerScript : MonoBehaviour {
 	public Sprite loseScreenImg;
 	public Sprite winScreenImg;
 
+	public string playerName;	//this is for input of the player for high score
+
 	public GM_1 gM_1;
 
 	public GameObject pauseButton;
@@ -182,7 +184,7 @@ public class ScoreManagerScript : MonoBehaviour {
 				winScreen.GetComponent<Image> ().sprite = winScreenImg;
 				gM_1.PauseGame();
 				pauseButton.SetActive (false);
-				ComputeTotalScore();
+				ComputeTotalScore(); //this is for saving highscores
 
 				if(SVM_Script.advanceIsLocked){
 					SVM_Script.advanceIsLocked=false;
@@ -207,8 +209,24 @@ public class ScoreManagerScript : MonoBehaviour {
 	}
 
 	public void ComputeTotalScore(){
-		totalScore = (float)((float)score / (float)TM_Script.elapsedTime)*100;
+		totalScore = (float)((float)score / (float)TM_Script.elapsedTime)*1000*lives;
+		if (SVM_Script.gameDifficulty=="easy") {
+			if(totalScore >= PlayerPrefs.GetInt("EE_Top1_Score_Easy")){
+				PlayerPrefs.SetInt("EE_Top1_Score_Easy", (int)totalScore);
+			
+			}
+			else if(totalScore >= PlayerPrefs.GetInt("EE_Top2_Score_Easy")){
+				PlayerPrefs.SetInt("EE_Top2_Score_Easy", (int)totalScore);
+			
+			}
+			else if(totalScore >= PlayerPrefs.GetInt("EE_Top3_Score_Easy")){
+				PlayerPrefs.SetInt("EE_Top3_Score_Easy", (int)totalScore);
+
+			}
+		}
 	}
+
+
 
 	public void LoseLife(){
 		lives -= 1;

@@ -3,7 +3,9 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class GM : MonoBehaviour {
-	
+
+	public HighScoreDisplayManagerScript HSDM_Script;
+
 	public GameObject playGamePanel;
 	public GameObject topScorePanel;
 	public GameObject creditsPanel;
