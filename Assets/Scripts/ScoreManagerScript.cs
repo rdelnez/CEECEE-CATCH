@@ -209,7 +209,7 @@ public class ScoreManagerScript : MonoBehaviour {
 	}
 
 	public void ComputeTotalScore(){
-		totalScore = (float)((float)score / (float)TM_Script.elapsedTime)*1000*lives;
+		totalScore = (float)((float)score / (float)TM_Script.elapsedTime)*900000*lives;
 		if (SVM_Script.gameDifficulty=="easy") {
 			if(totalScore >= PlayerPrefs.GetInt("EE_Top1_Score_Easy")){
 				PlayerPrefs.SetInt("EE_Top1_Score_Easy", (int)totalScore);
