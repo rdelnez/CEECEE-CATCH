@@ -55,6 +55,11 @@ public class HighScoreManagerScript : MonoBehaviour {
 		}
 	
 	}
+
+	void OnApplicationQuit()
+	{
+		PlayerPrefs.Save();
+	}
 	
 	// Update is called once per frame
 	void Update () {
