@@ -3,9 +3,6 @@ using System.Collections;
 
 public class HotAirBalloon : MonoBehaviour {
 	
-	
-
-	
 	float curveX = 35.0f;
 	float curveY = 30.8f;
 	float alongTheX = 1.0f;
