@@ -35,13 +35,13 @@ public class HighScoreDisplayManagerScript : MonoBehaviour {
 		top2Easy.text = PlayerPrefs.GetString("EE_Top2_Name_Easy")+" - "+PlayerPrefs.GetInt("EE_Top2_Score_Easy");
 		top3Easy.text = PlayerPrefs.GetString("EE_Top3_Name_Easy")+" - "+PlayerPrefs.GetInt("EE_Top3_Score_Easy");
 
-		top1Advance.text = PlayerPrefs.GetString("EE_Top1_Name_Advance", "MCK")+" - "+PlayerPrefs.GetInt("EE_Top1_Score_Advance", 000);
-		top2Advance.text = PlayerPrefs.GetString("EE_Top2_Name_Advance", "MCK")+" - "+PlayerPrefs.GetInt("EE_Top2_Score_Advance", 000);
-		top3Advance.text = PlayerPrefs.GetString("EE_Top3_Name_Advance", "MCK")+" - "+PlayerPrefs.GetInt("EE_Top3_Score_Advance", 000);
+		top1Advance.text = PlayerPrefs.GetString("EE_Top1_Name_Advance")+" - "+PlayerPrefs.GetInt("EE_Top1_Score_Advance");
+		top2Advance.text = PlayerPrefs.GetString("EE_Top2_Name_Advance")+" - "+PlayerPrefs.GetInt("EE_Top2_Score_Advance");
+		top3Advance.text = PlayerPrefs.GetString("EE_Top3_Name_Advance")+" - "+PlayerPrefs.GetInt("EE_Top3_Score_Advance");
 
-		top1Expert.text = PlayerPrefs.GetString("EE_Top1_Name_Expert", "MCK")+" - "+PlayerPrefs.GetInt("EE_Top1_Score_Expert", 000);
-		top2Expert.text = PlayerPrefs.GetString("EE_Top2_Name_Expert", "MCK")+" - "+PlayerPrefs.GetInt("EE_Top2_Score_Expert", 000);
-		top3Expert.text = PlayerPrefs.GetString("EE_Top3_Name_Expert", "MCK")+" - "+PlayerPrefs.GetInt("EE_Top3_Score_Expert", 000);
+		top1Expert.text = PlayerPrefs.GetString("EE_Top1_Name_Expert")+" - "+PlayerPrefs.GetInt("EE_Top1_Score_Expert");
+		top2Expert.text = PlayerPrefs.GetString("EE_Top2_Name_Expert")+" - "+PlayerPrefs.GetInt("EE_Top2_Score_Expert");
+		top3Expert.text = PlayerPrefs.GetString("EE_Top3_Name_Expert")+" - "+PlayerPrefs.GetInt("EE_Top3_Score_Expert");
 	
 	}
 }

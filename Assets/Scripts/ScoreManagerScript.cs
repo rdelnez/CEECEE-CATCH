@@ -13,6 +13,7 @@ public class ScoreManagerScript : MonoBehaviour {
 	public int lives;
 	public Object collectiblePrefab;
 	public GameObject tempCollectible;
+	public string tempString;
 
 	public char tempChar;
 	public string scoreString;
@@ -184,18 +185,27 @@ public class ScoreManagerScript : MonoBehaviour {
 				winScreen.GetComponent<Image> ().sprite = winScreenImg;
 				gM_1.PauseGame();
 				pauseButton.SetActive (false);
+
+				if (SVM_Script.gameDifficulty=="easy") {
+					tempString="Easy";
+					if(SVM_Script.advanceIsLocked){
+						SVM_Script.advanceIsLocked=false;
+						PlayerPrefs.SetInt("EE_advance",1);
+					}
+				}else if(SVM_Script.gameDifficulty=="advance"){
+					tempString="Advance";
+					if(SVM_Script.expertIsLocked){
+						SVM_Script.expertIsLocked=false;
+						PlayerPrefs.SetInt("EE_expert",1);
+					}
+				}
+				else if(SVM_Script.gameDifficulty=="expert"){
+					tempString="Expert";
+				}
+
 				ComputeTotalScore(); //this is for saving highscores
 
-				if(SVM_Script.advanceIsLocked){
-					SVM_Script.advanceIsLocked=false;
-					PlayerPrefs.SetInt("EE_advance",1);
 
-				}
-				else if(SVM_Script.expertIsLocked){
-					SVM_Script.expertIsLocked=false;
-					PlayerPrefs.SetInt("EE_expert",1);
-
-				}
 
 			}
 		
@@ -209,21 +219,24 @@ public class ScoreManagerScript : MonoBehaviour {
 	}
 
 	public void ComputeTotalScore(){
-		totalScore = (float)((float)score / (float)TM_Script.elapsedTime)*900000*lives;
-		if (SVM_Script.gameDifficulty=="easy") {
-			if(totalScore >= PlayerPrefs.GetInt("EE_Top1_Score_Easy")){
-				PlayerPrefs.SetInt("EE_Top1_Score_Easy", (int)totalScore);
+		totalScore = (float)((float)score / (float)TM_Script.elapsedTime)*100*lives;
+	
+		if(totalScore >= PlayerPrefs.GetInt("EE_Top1_Score_"+tempString)){
+			PlayerPrefs.SetInt ("EE_Top3_Score_"+tempString,PlayerPrefs.GetInt("EE_Top2_Score_"+tempString));
+			PlayerPrefs.SetInt ("EE_Top2_Score_"+tempString,PlayerPrefs.GetInt("EE_Top1_Score_"+tempString));
+			PlayerPrefs.SetInt("EE_Top1_Score_"+tempString, (int)totalScore);
 			
 			}
-			else if(totalScore >= PlayerPrefs.GetInt("EE_Top2_Score_Easy")){
-				PlayerPrefs.SetInt("EE_Top2_Score_Easy", (int)totalScore);
+		else if(totalScore >= PlayerPrefs.GetInt("EE_Top2_Score_"+tempString)){
+			PlayerPrefs.SetInt ("EE_Top3_Score_"+tempString,PlayerPrefs.GetInt("EE_Top2_Score_"+tempString));
+			PlayerPrefs.SetInt("EE_Top2_Score_"+tempString, (int)totalScore);
 			
 			}
-			else if(totalScore >= PlayerPrefs.GetInt("EE_Top3_Score_Easy")){
-				PlayerPrefs.SetInt("EE_Top3_Score_Easy", (int)totalScore);
+		else if(totalScore >= PlayerPrefs.GetInt("EE_Top3_Score_"+tempString)){
+			PlayerPrefs.SetInt("EE_Top3_Score_"+tempString, (int)totalScore);
 
 			}
-		}
+
 	}
 
 
