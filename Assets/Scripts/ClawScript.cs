@@ -15,7 +15,8 @@ public class ClawScript : MonoBehaviour {
 	
 	public ScoreManagerScript SM_Script;
 	public GM_1 GM_Script;
-	
+	public BeeMScript BeeM_Script;
+
 	public Vector3 target; 
 	public int ballValue = 100;
 	public GameObject childObject; 
@@ -68,16 +69,15 @@ public class ClawScript : MonoBehaviour {
 			gunScript.CollectedObject ();
 
 			if (hitBall) // this if is for when the claw hits a ball that needs to be destroyed
-				
 			{
 				Debug.Log ("collectedOBJ");
 				//	scoreManager.AddPoints (ballValue);
 				hitBall = false;
 				Debug.Log ("booo");
 
-				SM_Script.CheckScore();
+
 				Debug.Log ("booo2");
-				if(childObject.GetComponent<BallScript>().points == GM_Script.currentAnswer){ 	//to instantiate particle for win 
+				if(SM_Script.CheckScore(childObject.GetComponent<BallScript>().scoreValue)){ 	//to instantiate particle for win 
 					childObject.GetComponent<BallScript>().InstantiateParticleWin();
 
 					///////////////////////////////////////////////
@@ -85,7 +85,7 @@ public class ClawScript : MonoBehaviour {
 					GM_Script.ResetQuestion();
 					GM_Script.DestroyInstatiatedBalls("balls");
 					GM_Script.SpawnBalls();
-
+					BeeM_Script.ClearBees();
 				}
 				else {																  			//to instantiate particle for lose
 					childObject.GetComponent<BallScript>().InstantiateParticleLose();
@@ -164,7 +164,10 @@ public class ClawScript : MonoBehaviour {
 				hitBall = true;
 				childObject = other.gameObject;
 				SM_Script.playerAnswerInSM = childObject.GetComponent<BallScript> ().points;
-
+				if(SM_Script.VerifyAnswer())
+				{
+					BeeM_Script.SpawnBees(other.gameObject);
+				}
 			
 				other.transform.SetParent (this.transform);
 			} else if (other.gameObject.CompareTag ("collectibles")) {

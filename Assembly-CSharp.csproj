@@ -47,6 +47,8 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\BallScript.cs" />
+     <Compile Include="Assets\Scripts\BeeMScript.cs" />
+     <Compile Include="Assets\Scripts\Bee_Script.cs" />
      <Compile Include="Assets\Scripts\CameraScript.cs" />
      <Compile Include="Assets\Scripts\ClawScript.cs" />
      <Compile Include="Assets\Scripts\CollectiblesScript.cs" />
