@@ -359,7 +359,7 @@ public class QuestionManagerScript : MonoBehaviour {
 		Debug.Log (tempRandNum);
 		tempQuestion = listQuestions[tempRandNum];
 		tempAnswer = listAnswers[tempRandNum];
-		SM_Script.currentAnswerInSM = tempAnswer;
+		SM_Script.tempAnswerInSM = tempAnswer;
 		listQuestions.RemoveAt (tempRandNum);
 		listAnswers.RemoveAt (tempRandNum);
 

@@ -15,8 +15,7 @@ public class ClawScript : MonoBehaviour {
 	
 	public ScoreManagerScript SM_Script;
 	public GM_1 GM_Script;
-	public BeeMScript BeeM_Script;
-
+	
 	public Vector3 target; 
 	public int ballValue = 100;
 	public GameObject childObject; 
@@ -27,8 +26,6 @@ public class ClawScript : MonoBehaviour {
 	public bool retracting; 
 	public GameObject fishingRod;
 
-	public float retractingSpeed;
-
 	void Awake () 
 	{
 		retractOrigin = new Vector3 (0,0.73f,-2.77f);
@@ -37,46 +34,26 @@ public class ClawScript : MonoBehaviour {
 		
 		lineRenderer = GetComponent<LineRenderer> ();
 	}
-
-	void Start(){
-
-	if (SVM_Script.gameDifficulty == "easy") {
-		retractingSpeed = 2.5f;
-		
-	}
-	else if (SVM_Script.gameDifficulty == "advance") {
-		retractingSpeed = 3.5f;
-		
-	}
-	else if (SVM_Script.gameDifficulty == "expert") {
-		retractingSpeed = 5f;
-		
-		}
-	}
+	
 	
 	void Update () 
 	{
 		float step = speed * Time.deltaTime; 
-		float stoop = retractingSpeed*Time.deltaTime; 
 
 		if (gunScript.isShooting && !retracting) {
 			transform.position = Vector3.MoveTowards(transform.position, target, step);
 			transform.localEulerAngles += new Vector3(0,10.0f,0);
-
 
 			lineRenderer.material = lineMaterial;
 			lineRenderer.SetPosition (0, origin.position);
 			lineRenderer.SetPosition (1, transform.position);
 		}
 		else if(gunScript.isShooting && retracting){
-			transform.position = Vector3.MoveTowards(transform.position, origin.position, stoop);
+			transform.position = Vector3.MoveTowards(transform.position, origin.position, step);
 
 			if(!hitCollectibles){
 				transform.localEulerAngles += new Vector3(0,10.0f,0);
 			}
-		}
-			
-		{
 			lineRenderer.material = lineMaterial;
 			lineRenderer.SetPosition (0, origin.position);
 			lineRenderer.SetPosition (1, transform.position);
@@ -91,14 +68,16 @@ public class ClawScript : MonoBehaviour {
 			gunScript.CollectedObject ();
 
 			if (hitBall) // this if is for when the claw hits a ball that needs to be destroyed
+				
 			{
 				Debug.Log ("collectedOBJ");
 				//	scoreManager.AddPoints (ballValue);
 				hitBall = false;
 				Debug.Log ("booo");
 
+				SM_Script.CheckScore();
 				Debug.Log ("booo2");
-				if(SM_Script.CheckScore(childObject.GetComponent<BallScript>().scoreValue)){ 	//to instantiate particle for win 
+				if(childObject.GetComponent<BallScript>().points == GM_Script.currentAnswer){ 	//to instantiate particle for win 
 					childObject.GetComponent<BallScript>().InstantiateParticleWin();
 
 					///////////////////////////////////////////////
@@ -106,7 +85,7 @@ public class ClawScript : MonoBehaviour {
 					GM_Script.ResetQuestion();
 					GM_Script.DestroyInstatiatedBalls("balls");
 					GM_Script.SpawnBalls();
-					BeeM_Script.ClearBees();
+
 				}
 				else {																  			//to instantiate particle for lose
 					childObject.GetComponent<BallScript>().InstantiateParticleLose();
@@ -116,7 +95,6 @@ public class ClawScript : MonoBehaviour {
 
 			else if(hitCollectibles){
 				hitCollectibles = false;
-
 
 				childObject.GetComponent<CollectiblesScript>().DestroyCollectible();
 
@@ -128,7 +106,7 @@ public class ClawScript : MonoBehaviour {
 
 
 			this.transform.localPosition = new Vector3 (0,-1.888f,-2.77f);
-			Debug.Log ("retracingSpeed");
+
 
 			//this.transform.localRotation = Quaternion.Euler (270,0,0); 
 			//this.transform.localEulerAngles = new Vector3 (270,0,0);
@@ -186,10 +164,7 @@ public class ClawScript : MonoBehaviour {
 				hitBall = true;
 				childObject = other.gameObject;
 				SM_Script.playerAnswerInSM = childObject.GetComponent<BallScript> ().points;
-				if(SM_Script.VerifyAnswer())
-				{
-					BeeM_Script.SpawnBees(other.gameObject);
-				}
+
 			
 				other.transform.SetParent (this.transform);
 			} else if (other.gameObject.CompareTag ("collectibles")) {

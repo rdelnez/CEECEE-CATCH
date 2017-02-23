@@ -8,7 +8,6 @@ public class BallScript : MonoBehaviour {
 	public Object winParticle;
 	public Object loseParticle;
 	public int points;
-	public int scoreValue;
 
 	// Use this for initialization
 	void Start () {
@@ -37,11 +36,6 @@ public class BallScript : MonoBehaviour {
 	public void InstantiateParticleLose(){
 		tempParticle = Instantiate (loseParticle, this.transform.position+ new Vector3(0,-1.8f,0), Quaternion.identity) as GameObject;
 		Invoke ("DestroyInstantiate",0.1f);
-	}
-
-	public void DeductPoints(int pointValue)
-	{
-		scoreValue = pointValue > scoreValue ? 0 : scoreValue - pointValue;
 	}
 
 	public void DestroyInstantiate(){

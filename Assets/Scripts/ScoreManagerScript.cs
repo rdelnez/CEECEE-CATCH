@@ -11,20 +11,13 @@ public class ScoreManagerScript : MonoBehaviour {
 	public int pointToAdd;
 	public int tempNum;
 	public int lives;
-
-
 	public Object collectiblePrefab;
 	public GameObject tempCollectible;
-	//public Object beePrefab;
-	//public GameObject beeTemp;
-
 	public string tempString;
 
 	public char tempChar;
 	public string scoreString;
-	//Answer to current question
-	public int currentAnswerInSM;
-	//Answer held in claw
+	public int tempAnswerInSM;
 	public int playerAnswerInSM;
 	public Image question;
 	public QuestionManagerScript QM_Script;
@@ -48,6 +41,7 @@ public class ScoreManagerScript : MonoBehaviour {
 	public Sprite num7;
 	public Sprite num8;
 	public Sprite num9;
+	public double test;
 
 	public Image tempSprite;
 
@@ -121,9 +115,6 @@ public class ScoreManagerScript : MonoBehaviour {
 		marshMLives.Add (marshNum5);
 
 		DisplayScore (targetScoreNum1,targetScoreNum2,targetScore);
-
-		//StartCoroutine (BeeSpawn ());
-
 		StartCoroutine (CollectibleSpawn ());
 
 		loseScreen.SetActive (false);
@@ -148,13 +139,9 @@ public class ScoreManagerScript : MonoBehaviour {
 				tempCollectible = Instantiate(collectiblePrefab, this.gameObject.transform.localPosition, Quaternion.identity) as GameObject;
 
 			}
-//			else{
-//				beeTemp = Instantiate(beePrefab,gameObject.transform.localPosition,Quaternion.identity) as GameObject;
-//			}
-			yield return new WaitForSeconds(10f);
+			yield return new WaitForSeconds(15.0f);
 		}
 	}
-
 
 	public void DisplayScore(GameObject num1, GameObject num2, int tempChangeValue){
 		scoreString = tempChangeValue.ToString ();
@@ -186,16 +173,11 @@ public class ScoreManagerScript : MonoBehaviour {
 
 	}
 
-	/// <summary>
-	/// Checks if the answer is correct and updates that score if it is, otherwise updates the lives.
-	/// </summary>
-	/// <returns><c>true</c> If answer is correct, <c>false</c> otherwise.</returns>
-	/// <param name="ballScoreValue">Ball score value.</param>
-	public bool CheckScore(int ballScoreValue){
+	public void CheckScore(){
 
 		//when answer is right
-		if (currentAnswerInSM == playerAnswerInSM) {
-			score += ballScoreValue;
+		if (tempAnswerInSM == playerAnswerInSM) {
+			score += pointToAdd;
 			DisplayScore(scoreNum1, scoreNum2, score);
 
 			if(score>=targetScore){
@@ -228,13 +210,11 @@ public class ScoreManagerScript : MonoBehaviour {
 			}
 		
 			Debug.Log ("Correct Answer");
-			return true;
 		} 
 		//when answer is wrong
 		else { 
 			LoseLife (); 
 			CheckLives ();
-			return false;
 		}
 	}
 
@@ -296,11 +276,4 @@ public class ScoreManagerScript : MonoBehaviour {
 
 	}
 
-	public bool VerifyAnswer()
-	{
-		if (playerAnswerInSM == currentAnswerInSM)
-			return true;
-		else
-			return false;
-	}
 }

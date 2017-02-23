@@ -26,8 +26,8 @@ public class HighScoreManagerScript : MonoBehaviour {
 
 	void Start () {
 
-		if(!PlayerPrefs.HasKey("First Initialization")){
-			PlayerPrefs.SetInt("First Initialization",1);
+	//	if(!PlayerPrefs.HasKey("First Initialization")){
+	//		PlayerPrefs.SetInt("First Initialization",1);
 
 			PlayerPrefs.SetString("EE_Top1_Name_Easy", "AAA");
 			PlayerPrefs.SetString("EE_Top2_Name_Easy", "AAA");
@@ -52,7 +52,7 @@ public class HighScoreManagerScript : MonoBehaviour {
 			PlayerPrefs.SetInt("EE_Top1_Score_Expert", 000);
 			PlayerPrefs.SetInt("EE_Top2_Score_Expert", 000);
 			PlayerPrefs.SetInt("EE_Top3_Score_Expert", 000);
-		}
+		//}
 	
 	}
 
