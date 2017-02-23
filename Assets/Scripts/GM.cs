@@ -18,7 +18,7 @@ public class GM : MonoBehaviour {
 
 	
 	public GameObject buttonSound;
-	public AudioSource audio;
+	new AudioSource audio;
 	
 	
 	

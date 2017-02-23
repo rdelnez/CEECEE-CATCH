@@ -45,4 +45,6 @@ public class CollectiblesScript : MonoBehaviour {
 		Destroy (this.gameObject);
 
 	}
+
+
 }
