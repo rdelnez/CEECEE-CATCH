@@ -31,6 +31,8 @@ public class GunScript : MonoBehaviour {
 	public GameObject castImageObject;
 	public Image castSpriteRenderer;
 
+	 
+
 
 	void Start(){
 		//panelInstructionsOff = false;
@@ -48,6 +50,8 @@ public class GunScript : MonoBehaviour {
 		canShoot = false;
 
 		claw.SetActive (false);
+
+	
 
 	}
 

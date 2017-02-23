@@ -139,6 +139,7 @@ public class GM_1 : MonoBehaviour {
 			listPosition.RemoveAt(tempNum);
 
 			ballPrefabs.GetComponent<BallScript>().points = x;
+			ballPrefabs.GetComponent<BallScript>().scoreValue = 5;
 			ballPrefabs.transform.localEulerAngles = new Vector3(270,196,0);
 			ballPrefabs.GetComponent<Renderer>().material = matBallList[x];
 
@@ -280,8 +281,6 @@ public class GM_1 : MonoBehaviour {
 		gunScript.canShoot = true;
 
 		gunScript.shooterAnimator.speed = 1; // shooter starts moving only once smoke appears.
-
-
 	}
 
 	public void GetNextQuestion(){
@@ -290,7 +289,6 @@ public class GM_1 : MonoBehaviour {
 		currentAnswer = questionManagerScript.tempAnswer;
 
 		bigQuestionDisplay.GetComponent<Image> ().sprite = currentQuestion;
-
 	}
 
 

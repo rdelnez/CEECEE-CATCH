@@ -17,8 +17,8 @@ public class CollectiblesScript : MonoBehaviour {
 		isCollected = false;
 
 		StartCoroutine (CollectibleAnim());
-	
-		Invoke ("DestroyCollectible",10.0f);
+		Destroy(gameObject, 10f);
+		//Invoke ("DestroyCollectible",10.0f);
 	}
 	
 	// Update is called once per frame
@@ -45,4 +45,6 @@ public class CollectiblesScript : MonoBehaviour {
 		Destroy (this.gameObject);
 
 	}
+
+
 }

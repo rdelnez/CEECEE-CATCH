@@ -1,8 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="..\Bingo 3D new\Assets\Scripts\BallManager.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\BeeBurstParticle.cs">
     <Files>
-      <File FileName="..\Bingo 3D new\Assets\Scripts\BallManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Bee_Script.cs" Line="10" Column="8" />
+      <File FileName="Assets\Scripts\BeeBurstParticle.cs" Line="10" Column="56" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
